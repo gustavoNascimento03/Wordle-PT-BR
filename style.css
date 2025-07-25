@@ -181,10 +181,9 @@ header {
     10%, 90% { opacity: 1; transform: translateY(0); }
 }
 
-/* --- NOVO: ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS --- */
+/* --- LAYOUT MOBILE CORRIGIDO --- */
 @media (max-width: 500px) {
     body {
-        /* Garante que o layout ocupe a altura visível em navegadores mobile como o Safari */
         height: -webkit-fill-available; 
         min-height: 100vh;
     }
@@ -192,22 +191,26 @@ header {
     .game-container {
         padding: 5px;
         height: 100%;
-        justify-content: start; /* Alinha o conteúdo ao topo */
+        /* Distribui o espaço para empurrar o teclado para cima */
+        justify-content: space-around; 
     }
 
     header {
         padding-bottom: 8px;
+        flex-shrink: 0; /* Impede que o header encolha */
     }
 
     header h1 {
-        font-size: 1.5rem; /* Reduz o tamanho do título */
+        font-size: 1.5rem;
     }
 
     #game-board {
-        padding: 10px 5px;
+        padding: 0; /* Remove o padding para deixar mais compacto */
         gap: 4px;
-        max-width: 100%; /* Ocupa a largura total disponível */
-        flex-grow: 0; /* Impede que o tabuleiro cresça demais */
+        /* Define um tamanho máximo para o tabuleiro não esticar demais */
+        width: 90vw; 
+        max-width: 320px;
+        flex-grow: 0; /* Impede que o tabuleiro cresça verticalmente */
     }
 
     .row {
@@ -215,14 +218,15 @@ header {
     }
 
     .tile {
-        font-size: 1.8rem; /* Reduz o tamanho da letra nos quadrados */
+        font-size: 1.8rem;
         border-width: 2px;
     }
 
     #keyboard {
         gap: 4px;
-        padding: 5px 0; /* Adiciona um respiro em baixo */
-        margin-top: auto; /* Empurra o teclado para baixo */
+        padding: 0 2px;
+        margin: 0; /* Remove o margin-top: auto anterior */
+        flex-shrink: 0; /* Impede que o teclado encolha */
     }
 
     .keyboard-row {
@@ -230,8 +234,8 @@ header {
     }
 
     .key {
-        height: 45px; /* Reduz a altura das teclas */
-        font-size: 0.8rem; /* Reduz o tamanho da fonte das teclas */
+        height: 50px; /* Aumenta um pouco a altura para facilitar o toque */
+        font-size: 0.8rem;
         border-radius: 3px;
     }
     
